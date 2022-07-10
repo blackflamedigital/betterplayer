@@ -13,6 +13,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+//        maven { url "$project.projectDir/libs" }
     }
 
     dependencies {
@@ -25,11 +26,15 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs('/src/main/libs')
+        }
     }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 31
@@ -63,9 +68,11 @@ android {
         implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
         implementation "androidx.annotation:annotation:$annotationVersion"
         implementation "androidx.work:work-runtime:$workVersion"
+        api fileTree(include: ['*.aar'], dir: 'libs')
     }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
+
