@@ -86,6 +86,7 @@ internal class BetterPlayer(
     private var lastSendBufferedPosition = 0L
 
     init {
+//        FfmpegAudioRenderer
         val loadBuilder = DefaultLoadControl.Builder()
         loadBuilder.setBufferDurationsMs(
             this.customDefaultLoadControl.minBufferMs,
@@ -105,9 +106,9 @@ internal class BetterPlayer(
             .setTrackSelector(trackSelector)
             .setLoadControl(loadControl)
             .build()
-//        repeat(exoPlayer.rendererCount) { index ->
-//            Log.e("RENDERER", exoPlayer.getRenderer(index).toString())
-//        }
+        repeat(exoPlayer.rendererCount) { index ->
+            Log.e("RENDERER", exoPlayer.getRenderer(index).toString())
+        }
         workManager = WorkManager.getInstance(context)
         workerObserverMap = HashMap()
         setupVideoPlayer(eventChannel, textureEntry, result)

@@ -13,6 +13,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+//        mavenLocal()
 //        maven { url "$project.projectDir/libs" }
     }
 
@@ -26,15 +27,16 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+//        mavenLocal()
         flatDir {
-            dirs('/src/main/libs')
+            dirs project(':better_player').file('libs')
+            // e.g. dirs project(':url_launcher').file('libs')  - don't miss the ':'
         }
     }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 31
@@ -68,7 +70,8 @@ android {
         implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
         implementation "androidx.annotation:annotation:$annotationVersion"
         implementation "androidx.work:work-runtime:$workVersion"
-        api fileTree(include: ['*.aar'], dir: 'libs')
+        implementation (name: 'ffmpeg', ext: 'aar')
+//        api fileTree(include: ['*.aar'], dir: 'libs')
     }
 }
 
@@ -76,3 +79,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
 
+//apply plugin: 'maven-publish'
+//publishing {
+//    publications {
+//        library(MavenPublication) {
+//            version "0.1"
+//            artifact("com.jhomlala.better_player.better_player")
+//        }
+//    }
+//}
