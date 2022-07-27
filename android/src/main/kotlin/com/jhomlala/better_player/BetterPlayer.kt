@@ -28,6 +28,7 @@ import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.drm.*
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
+import com.google.android.exoplayer2.mediacodec.MediaCodecSelector
 import com.google.android.exoplayer2.source.ClippingMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -45,6 +46,7 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.Util
+import com.google.android.exoplayer2.video.MediaCodecVideoRenderer
 import com.jhomlala.better_player.DataSourceUtils.getDataSourceFactory
 import com.jhomlala.better_player.DataSourceUtils.getUserAgent
 import com.jhomlala.better_player.DataSourceUtils.isHTTP
@@ -56,7 +58,7 @@ import java.io.File
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
-
+import exoplayer2.ext.hevc.*
 
 internal class BetterPlayer(
     context: Context,
@@ -86,6 +88,13 @@ internal class BetterPlayer(
     private var lastSendBufferedPosition = 0L
 
     init {
+        val hevcRenderer01 = MediaCodecVideoRenderer(context, MediaCodecSelector.DEFAULT)
+        val hevcRenderer02 = Hevc
+
+
+            LibHevcVideoRenderer
+        imo
+        val hevcRenderer03 =
 //        FfmpegAudioRenderer
         val loadBuilder = DefaultLoadControl.Builder()
         loadBuilder.setBufferDurationsMs(
